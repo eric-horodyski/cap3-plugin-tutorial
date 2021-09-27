@@ -1,0 +1,7 @@
+{
+  "name": "cap3-plugin-tutorial",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
