@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "cap3-plugin-tutorial",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}
