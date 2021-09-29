@@ -12,9 +12,9 @@ Pretend that you work for a delivery carrier, and the application you wrote lets
 
 The plugin we build will implement **screen orientation** features to accommodate this request:
 
-The device’s current **orientation** will be detected, with differing UIs for portrait and landscape mode.
-Users will be given the option to rotate and **lock** their screen orientation to landscape mode.
-After a signature has been confirmed, the app will **unlock** screen orientation rotation.
+- The device’s current **orientation** will be detected, with differing UIs for portrait and landscape mode.
+- Users will be given the option to rotate and **lock** their screen orientation to landscape mode.
+- After a signature has been confirmed, the app will **unlock** screen orientation rotation.
 
 For this tutorial, we will mock up a signature pad but only build out screen orientation functionality.
 
@@ -35,4 +35,4 @@ npx cap add ios
 npx cap add android
 ```
 
-Now that we have a Capacitor app in place with native platforms added, we’re ready to move on to the first step of building a plugin: [designing the API](docs/designing-the-plugin-api).
+Now that we have a Capacitor app in place with native platforms added, we’re ready to move on to the first step of building a plugin: [designing the API](docs/designing-the-plugin-api.md).
