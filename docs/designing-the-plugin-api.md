@@ -16,13 +16,13 @@ If screen orientation already has a Web API, why would we go out of our way to b
 
 We might not be able to use the Screen Orientation Web API outright, but we can model our plugin’s API against it:
 
-| Method Name        | Input Parameters                       | Return Value                                           |
-| ------------------ | -------------------------------------- | ------------------------------------------------------ |
-| orientation        |                                        | `Promise<{ type: OrientationType }>`                   |
-| lock               | `{ orientation: OrientationLockType }` | `Promise<void>`                                        |
-| unlock             |                                        | `Promise<void>`                                        |
-| addListener        | `(type: OrientationType) => void`      | `Promise<PluginListenerHandle> & PluginListenerHandle` |
-| removeAllListeners |                                        | `Promise<void>`                                        |
+| Method Name        | Input Parameters                            | Return Value                                           |
+| ------------------ | ------------------------------------------- | ------------------------------------------------------ |
+| orientation        |                                             | `Promise<{ type: OrientationType }>`                   |
+| lock               | `{ orientation: OrientationLockType }`      | `Promise<void>`                                        |
+| unlock             |                                             | `Promise<void>`                                        |
+| addListener        | `(orientation: { type: OrientationType }) ` | `Promise<PluginListenerHandle> & PluginListenerHandle` |
+| removeAllListeners |                                             | `Promise<void>`                                        |
 
 There is an added advantage here; we can use the `OrientationType` and `OrientationLockType` types available through TypeScript’s existing DOM typings.
 
@@ -52,7 +52,7 @@ export interface ScreenOrientationPlugin {
    */
   addListener(
     eventName: "screenOrientationChange",
-    listenerFunc: (type: OrientationType) => void
+    listenerFunc: (orientation: { type: OrientationType }) => void
   ): Promise<PluginListenerHandle> & PluginListenerHandle;
 
   /**
