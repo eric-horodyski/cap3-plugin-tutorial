@@ -30,7 +30,11 @@ export interface ScreenOrientationPlugin {
   removeAllListeners(): Promise<void>;
 }
 
-const ScreenOrientation =
-  registerPlugin<ScreenOrientationPlugin>("ScreenOrientation");
+const ScreenOrientation = registerPlugin<ScreenOrientationPlugin>(
+  "ScreenOrientation",
+  {
+    web: () => import("./web").then((m) => new m.ScreenOrientationWeb()),
+  }
+);
 
 export default ScreenOrientation;
