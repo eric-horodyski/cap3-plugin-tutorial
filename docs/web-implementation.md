@@ -2,13 +2,13 @@
 
 While designing the plugin’s API, we found out that the web already supports screen orientation functionality (except on mobile devices, of course). You might be asking why what would be the purpose for our plugin to have a web implementation...couldn’t you programmatically detect if the user is on the web and use the <a href="https://whatwebcando.today/screen-orientation.html" target="_blank">Screen Orientation Web API</a>, otherwise, use the plugin?
 
-The mantra behind Web Native applications is "write once, run anywhere." This applies to plugins as well -- developers using Capacitor plugins ought to be able to use the same plugin class and methods and have them implemented for all platforms.
+The mantra behind Web Native applications is "write once, run anywhere." This applies to plugins as well; developers using Capacitor plugins ought to be able to use the same plugin class and methods and have them implemented for all platforms.
 
 Therefore, we will be good developer-citizens and wrap the Screen Orientation Web API inside the web implementation of the `ScreenOrientation` plugin.
 
 ## Extending Capacitor’s WebPlugin class
 
-Create a new file `src/plugins/web.ts`. This file is where we will write the web implementation of the `ScreenOrientation` plugin.
+Open a new file `src/plugins/screen-orientation/web.ts`. This file is where we will write the web implementation of the `ScreenOrientation` plugin.
 
 Start by declaring the `ScreenOrientationWeb` class, and have it extend `WebPlugin`:
 
@@ -66,7 +66,7 @@ Then implement the remaining methods as part of the `ScreenOrientationWeb` class
 
 ## Registering the web implementation
 
-To register `ScreenOrientationWeb` as our plugin’s web implementation, we need to use the second input parameter of `registerPlugin()`. Open `src/plugins/ScreenOrientation.ts` and update the declaration of the `ScreenOrientation` variable like so:
+To register `ScreenOrientationWeb` as our plugin’s web implementation, we need to use the second input parameter of `registerPlugin()`. Open `src/plugins/screen-orientation/index.ts` and update the declaration of the `ScreenOrientation` variable like so:
 
 ```typescript
 const ScreenOrientation = registerPlugin<ScreenOrientationPlugin>(

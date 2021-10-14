@@ -26,10 +26,15 @@ We might not be able to use the Screen Orientation Web API outright, but we can 
 
 There is an added advantage here; we can use the `OrientationType` and `OrientationLockType` types available through TypeScript’s existing DOM typings.
 
-Create a new subfolder `src/plugins`, and create a new file in it named `ScreenOrientation.ts`. Populate the file with the following code:
+Let's set up a directory to hold our plugin API. Create a new subfolder `src/plugins/screen-orientation` and add the following files within:
+
+- `definitions.ts`
+- `index.ts`
+
+Populate `definitions.ts` with the following code:
 
 ```typescript
-import { registerPlugin, PluginListenerHandle } from "@capacitor/core";
+import { PluginListenerHandle } from "@capacitor/core";
 
 export interface ScreenOrientationPlugin {
   /**
@@ -60,13 +65,26 @@ export interface ScreenOrientationPlugin {
    */
   removeAllListeners(): Promise<void>;
 }
+```
+
+## Registering the ScreenOrientation plugin
+
+In order to use the plugin in the Capacitor application, we need to register it using the `registerPlugin()` module exported from `@capacitor/core`.
+
+Populate `index.ts` with the following code:
+
+```typescript
+import { registerPlugin } from "@capacitor/core";
+
+import type { ScreenOrientationPlugin } from "./definitions";
 
 const ScreenOrientation =
   registerPlugin<ScreenOrientationPlugin>("ScreenOrientation");
 
-export default ScreenOrientation;
+export * from "./definitions";
+export { ScreenOrientation };
 ```
 
-We use `registerPlugin()` from `@capacitor/core` to create an object linked to our plugin’s implementation code.
+The code above creates an object linked to our plugin's implementation code.
 
 Designing the API is complete; let’s build a user interface that will call it. In doing so, we will make testing easier as we implement each platform integration. Our next step: [using the plugin API](using-the-plugin-api.md).

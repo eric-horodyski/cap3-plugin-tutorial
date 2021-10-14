@@ -1,4 +1,4 @@
-import { registerPlugin, PluginListenerHandle } from "@capacitor/core";
+import { PluginListenerHandle } from "@capacitor/core";
 
 export interface ScreenOrientationPlugin {
   /**
@@ -29,12 +29,3 @@ export interface ScreenOrientationPlugin {
    */
   removeAllListeners(): Promise<void>;
 }
-
-const ScreenOrientation = registerPlugin<ScreenOrientationPlugin>(
-  "ScreenOrientation",
-  {
-    web: () => import("./web").then((m) => new m.ScreenOrientationWeb()),
-  }
-);
-
-export default ScreenOrientation;

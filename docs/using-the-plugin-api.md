@@ -5,7 +5,7 @@ It makes sense to build out a user interface that exercises the plugin’s API b
 The focus of this walkthrough is how to build a Capacitor plugin, not how to build an Ionic Framework application, so you can just take the finished versions of the files needed and copy and paste their contents into your project:
 
 - [src/pages/Home.tsx](https://github.com/eric-horodyski/cap3-plugin-tutorial/blob/main/src/pages/Home.tsx)
-- [src/pages/Home.css](https://github.com/eric-horodyski/cap3-plugin-tutorial/blob/main/src/pages/Home.tsx)
+- [src/pages/Home.css](https://github.com/eric-horodyski/cap3-plugin-tutorial/blob/main/src/pages/Home.css)
 
 Once copied over, serve the Capacitor app using the `ionic serve` command. Open up the browser’s Developer Tools, and you should see the following error:
 

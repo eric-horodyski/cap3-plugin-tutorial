@@ -1,5 +1,5 @@
 import { WebPlugin } from "@capacitor/core";
-import { ScreenOrientationPlugin } from "./ScreenOrientation";
+import { ScreenOrientationPlugin } from "./definitions";
 
 export class ScreenOrientationWeb
   extends WebPlugin

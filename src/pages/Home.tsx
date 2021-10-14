@@ -9,7 +9,7 @@ import {
 } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import { checkmarkCircle, phoneLandscape } from "ionicons/icons";
-import ScreenOrientation from "../plugins/ScreenOrientation";
+import { ScreenOrientation } from "../plugins/screen-orientation";
 
 import "./Home.css";
 
