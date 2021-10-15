@@ -16,11 +16,11 @@ import "./Home.css";
 const Home: React.FC = () => {
   const [orientation, setOrientation] = useState<string>("");
 
-  ScreenOrientation.addListener("screenOrientationChange", (res) =>
-    setOrientation(res.type)
-  );
-
   useEffect(() => {
+    ScreenOrientation.addListener("screenOrientationChange", (res) =>
+      setOrientation(res.type)
+    );
+
     ScreenOrientation.orientation().then((res) => setOrientation(res.type));
 
     return () => {
