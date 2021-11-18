@@ -90,7 +90,7 @@ public class ScreenOrientation: NSObject {
 }
 ```
 
-Next, wire up the `orientation` method in `SwiftOrientationPlugin.swift` to call the implementation class’s method:
+Next, wire up the `orientation` method in `ScreenOrientationPlugin.swift` to call the implementation class’s method:
 
 ```Swift
 @objc(ScreenOrientationPlugin)
