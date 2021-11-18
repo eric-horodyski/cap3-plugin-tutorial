@@ -14,7 +14,7 @@ Start by declaring the `ScreenOrientationWeb` class, and have it extend `WebPlug
 
 ```typescript
 import { WebPlugin } from "@capacitor/core";
-import { ScreenOrientationPlugin } from "./ScreenOrientation";
+import type { ScreenOrientationPlugin } from "./ScreenOrientation";
 
 export class ScreenOrientationWeb extends WebPlugin {
   constructor() {

@@ -34,7 +34,7 @@ Let's set up a directory to hold our plugin API. Create a new subfolder `src/plu
 Populate `definitions.ts` with the following code:
 
 ```typescript
-import { PluginListenerHandle } from "@capacitor/core";
+import type { PluginListenerHandle } from "@capacitor/core";
 
 export interface ScreenOrientationPlugin {
   /**
