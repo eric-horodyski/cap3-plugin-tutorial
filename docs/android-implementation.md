@@ -6,15 +6,14 @@ Development for the plugin is nearly complete. All that’s left is the Android 
 
 > **Prerequisite:** Familiarize yourself with the <a href="https://capacitorjs.com/docs/android/custom-code" target="_blank">Capacitor Custom Native Android Code documentation</a> before continuing.
 
-Open up the Capacitor application’s Android project in Android Studio by running `npx cap open android`. Expand the **app** module and the **java** folder and right-click on your app’s Java package. Select **New -> Package** from the context menu and create a subpackage named plugins. Right-click the **plugins** package and repeat the preceding process to create a subpackage named ScreenOrientation.
+Open up the Capacitor application’s Android project in Android Studio by running `npx cap open android`. Expand the **app** module and the **java** folder and right-click on your app’s Java package. Select **New -> Package** from the context menu and create a subpackage named _plugins_. Right-click the **plugins** package and repeat the preceding process to create a subpackage named _ScreenOrientation_.
 
 Next, right-click the **ScreenOrientation** package and add a new Java file by selecting **New -> Java File** from the context menu. Name this file `ScreenOrientationPlugin.java`. Repeat the process to create a new file named `ScreenOrientation.java`.
 
 Copy the following code into `ScreenOrientationPlugin.java`:
 
 ```java
-// Note: The package name may need to be adjusted according to your project setup.
-package io.ionic.starter.plugins.ScreenOrientation;
+package io.ionic.cap.plugin.plugins.ScreenOrientation;
 
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
@@ -44,9 +43,11 @@ public class ScreenOrientationPlugin extends Plugin {
 Register the plugin class within the project’s MainActivity to bridge between Java and JavaScript. Open `MainActivity.java` and add an `onCreate()` method where we can register the plugin:
 
 ```java
+package io.ionic.cap.plugin; 
+
 import android.os.Bundle;
 import com.getcapacitor.BridgeActivity;
-import io.ionic.starter.plugins.ScreenOrientation.ScreenOrientationPlugin;
+import io.ionic.cap.plugin.plugins.ScreenOrientation.ScreenOrientationPlugin;
 
 public class MainActivity extends BridgeActivity {
    @Override
@@ -62,6 +63,8 @@ public class MainActivity extends BridgeActivity {
 Like iOS, we will tackle getting the current screen orientation first. Open `ScreenOrientation.java` to set up the class and write a method to get the current orientation:
 
 ```java
+package io.ionic.cap.plugin.plugins.ScreenOrientation;
+
 import android.view.Surface;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -73,7 +76,7 @@ public class ScreenOrientation {
    }
 
    public String getCurrentOrientationType() {
-       int rotation = getActivity().getWindowManager().getDefaultDisplay().getRotation();
+       int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
        return fromRotationToOrientationType(rotation);
    }
 
@@ -95,6 +98,11 @@ public class ScreenOrientation {
 Next, wire up the `orientation` method in `ScreenOrientationPlugin.java` to call the implementation class’s method:
 
 ```java
+package io.ionic.cap.plugins.ScreenOrientation;
+
+import com.getcapacitor.JSObject;
+/* Remaining imports omitted for brevity */
+
 @CapacitorPlugin(name = "ScreenOrientation")
 public class ScreenOrientationPlugin extends Plugin {
 
@@ -115,7 +123,7 @@ public class ScreenOrientationPlugin extends Plugin {
 
    /* Remaining code omitted for brevity */
 }
-```
+``` 
 
 The `load()` method is the proper place to initialize the `ScreenOrientation` class instance with the Capacitor bridge object.
 
@@ -133,7 +141,13 @@ Android considers the rotation of a device a runtime configuration change, so we
 
 Capacitor provides an overridable method, `handleOnConfigurationChanged()`, that can be used to respond to runtime configuration changes.
 
-Add the following methods to the `ScreenOrientationPlugin` class:
+First add the following import to the `ScreenOrientationPlugin` class:
+
+```java
+import android.content.res.Configuration;
+```
+
+Then add the following methods to the `ScreenOrientationPlugin` class:
 
 ```java
 @Override
@@ -172,6 +186,8 @@ public boolean hasOrientationChanged(int orientation) {
 }
 ```
 
+Don't forget to import `androidx.annotation.Nullable` to `ScreenOrientation.java`.
+
 Then update the `handleOnConfigurationChanged()` method in `ScreenOrientationPlugin.java`:
 
 ```java
@@ -205,6 +221,8 @@ private int fromOrientationTypeToEnum(String orientationType) {
    }
 }
 ```
+
+Make sure to import `android.content.pm.ActivityInfo` to `ScreenOrientation.java`.
 
 Next, add a `lock()` method to the `ScreenOrientation` class:
 
